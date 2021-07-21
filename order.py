@@ -25,4 +25,20 @@ order =  {
     "currency": "EUR"
 }
 res = req.post(BASE_URL+'/Order',headers=HEADERS,json=order)
-res
+print( res.json() )
+
+# GET ORDER POSITIONS
+res = req.get('https://my.sevdesk.de/api/v1/OrderPos',headers=HEADERS)
+res.json()
+
+# ADD ORDER POSITION TO AN EXISTING ORDER
+orderPos = {
+    "order": {"id": 5953763,"objectName":"Order"},
+    "text": "Self Defense Crash Course - 1 x Unit 120 min",
+    "quantity": 1,
+    "unity": {"id": 1,"objectName": "Unity"},
+    "taxRate": 19,
+    "price": 160.00
+}
+res = req.post('https://my.sevdesk.de/api/v1/OrderPos',headers=HEADERS,json=orderPos)
+res.json()
